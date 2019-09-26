@@ -6,11 +6,24 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import {AppareilsPage} from "../pages/appareils/appareils";
+import {SingleAppareilPage} from "../pages/single-appareil/single-appareil";
+import {TabsPage} from "../pages/tabs/tabs";
+import {SettingsPage} from "../pages/settings/settings";
+import {AppareilsService} from "../services/appareils.service";
+import {OptionsPage} from "../pages/options/options";
+import {AppareilFormPage} from "../pages/appareils/appareil-form/appareil-form";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    AppareilsPage,
+    SingleAppareilPage,
+    TabsPage,
+    SettingsPage,
+    OptionsPage,
+    AppareilFormPage
   ],
   imports: [
     BrowserModule,
@@ -19,11 +32,18 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    AppareilsPage,
+    SingleAppareilPage,
+    TabsPage,
+    SettingsPage,
+    OptionsPage,
+    AppareilFormPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AppareilsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
