@@ -3,15 +3,22 @@ import { MenuController, NavController, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import * as firebase from 'firebase';
+
 import { TabsPage } from '../pages/tabs/tabs';
 import { OptionsPage } from '../pages/options/options';
+import { AuthPage } from '../pages/auth/auth';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   tabsPage:any = TabsPage;
   optionsPage:any = OptionsPage;
+  authPage:any = AuthPage;
   @ViewChild('content') content: NavController;
+
+  isAuth: boolean;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
@@ -20,11 +27,37 @@ export class MyApp {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
+      let firebaseConfig = {
+        apiKey: "AIzaSyBaeAA9l0ZyQPgrChDXpHazYXQArhAyYXE",
+        authDomain: "ionicproject-754ba.firebaseapp.com",
+        databaseURL: "https://ionicproject-754ba.firebaseio.com",
+        projectId: "ionicproject-754ba",
+        storageBucket: "",
+        messagingSenderId: "225951650549",
+        appId: "1:225951650549:web:93e71d74e0ebbd9cc8abbc"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.auth().onAuthStateChanged(
+        (user) => {
+          if(user) {
+            this.isAuth = true; 
+            this.content.setRoot(TabsPage);
+          } else {
+            this.isAuth = false;
+            this.content.setRoot(AuthPage, {mode: 'connect'});
+          }
+        }
+      );
     });
   }
 
-  onNavigate(page: any) {
-    this.content.setRoot(page);
+  onDisconnect(){
+    firebase.auth().signOut();
+    this.menuCtrl.close();
+  }
+
+  onNavigate(page: any, data?: {}) {
+    this.content.setRoot(page), data? data:null);
     this.menuCtrl.close();
   }
 }

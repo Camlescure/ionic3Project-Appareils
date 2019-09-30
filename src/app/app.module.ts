@@ -13,6 +13,8 @@ import {SettingsPage} from "../pages/settings/settings";
 import {AppareilsService} from "../services/appareils.service";
 import {OptionsPage} from "../pages/options/options";
 import {AppareilFormPage} from "../pages/appareils/appareil-form/appareil-form";
+import { AuthService } from '../services/auth.service';
+import { AuthPage } from '../pages/auth/auth';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {AppareilFormPage} from "../pages/appareils/appareil-form/appareil-form";
     TabsPage,
     SettingsPage,
     OptionsPage,
-    AppareilFormPage
+    AppareilFormPage, 
+    AuthPage
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import {AppareilFormPage} from "../pages/appareils/appareil-form/appareil-form";
     StatusBar,
     SplashScreen,
     AppareilsService,
+    AuthService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

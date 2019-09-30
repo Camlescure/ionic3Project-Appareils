@@ -14,6 +14,19 @@
         <ion-icon name="options"></ion-icon>
         Options
       </button>
+      <button ion-item icon-start *ngIf="!isAuth" (click)="onNavigate(authPage, {mode:'new'})">
+        <ion-icon name="person-add"></ion-icon>
+        Nouvel utilisateur
+      </button>
+      <button ion-item icon-start *ngIf="!isAuth" (click)="onNavigate(authPage, {mode:'connect'})">
+        <ion-icon name="person">
+          Connexion
+        </ion-icon>
+      </button>
+      <button ion-item icon-start *ngIf="isAuth" click="onDisconnect()">
+        <ion-icon name="exit"></ion-icon>
+        Déconnexion
+      </button>
     </ion-list>
   </ion-content>
 </ion-menu>
