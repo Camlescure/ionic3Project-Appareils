@@ -38,23 +38,23 @@ export class AuthPage implements OnInit {
     });
   }
 
-  onSubmitForm(){
-    const email = this.authForm.get('email').value();
-    const password = this.authForm.get('password').value();
-    if(this.mode === 'new'){
+  onSubmitForm() {
+    const email = this.authForm.get('email').value;
+    const password = this.authForm.get('password').value;
+    if (this.mode === 'new') {
       this.authService.signUpUser(email, password).then(
         () => {
           this.navCtrl.setRoot(TabsPage);
-        }, 
+        },
         (error) => {
           this.errorMessage = error;
         }
       );
-    } else if (this.mode === 'connect'){
+    } else if (this.mode === 'connect') {
       this.authService.signInUser(email, password).then(
         () => {
           this.navCtrl.setRoot(TabsPage);
-        }, 
+        },
         (error) => {
           this.errorMessage = error;
         }

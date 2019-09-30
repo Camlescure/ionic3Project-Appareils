@@ -41,7 +41,8 @@ import { AuthPage } from '../pages/auth/auth';
     TabsPage,
     SettingsPage,
     OptionsPage,
-    AppareilFormPage
+    AppareilFormPage, 
+    AuthPage
   ],
   providers: [
     StatusBar,

@@ -24,32 +24,31 @@ export class MyApp {
               statusBar: StatusBar,
               splashScreen: SplashScreen,
               private menuCtrl: MenuController) {
-    platform.ready().then(() => {
-      statusBar.styleDefault();
-      splashScreen.hide();
-      let firebaseConfig = {
-        apiKey: "AIzaSyBaeAA9l0ZyQPgrChDXpHazYXQArhAyYXE",
-        authDomain: "ionicproject-754ba.firebaseapp.com",
-        databaseURL: "https://ionicproject-754ba.firebaseio.com",
-        projectId: "ionicproject-754ba",
-        storageBucket: "",
-        messagingSenderId: "225951650549",
-        appId: "1:225951650549:web:93e71d74e0ebbd9cc8abbc"
-      };
-      firebase.initializeApp(firebaseConfig);
-      firebase.auth().onAuthStateChanged(
-        (user) => {
-          if(user) {
-            this.isAuth = true; 
-            this.content.setRoot(TabsPage);
-          } else {
-            this.isAuth = false;
-            this.content.setRoot(AuthPage, {mode: 'connect'});
-          }
-        }
-      );
-    });
-  }
+                platform.ready().then(() => {
+                  statusBar.styleDefault();
+                  splashScreen.hide();
+                  let config = {
+                    apiKey: "AIzaSyBaeAA9l0ZyQPgrChDXpHazYXQArhAyYXE",
+                    authDomain: "ionicproject-754ba.firebaseapp.com",
+                    databaseURL: "https://ionicproject-754ba.firebaseio.com",
+                    projectId: "ionicproject-754ba",
+                    storageBucket: "",
+                    messagingSenderId: "225951650549"
+                  };
+                  firebase.initializeApp(config);
+                  firebase.auth().onAuthStateChanged(
+                    (user) => {
+                      if (user) {
+                        this.isAuth = true;
+                        this.content.setRoot(TabsPage);
+                      } else {
+                        this.isAuth = false;
+                        this.content.setRoot(AuthPage, {mode: 'connect'});
+                      }
+                    }
+                  );
+                });  
+              }
 
   onDisconnect(){
     firebase.auth().signOut();
@@ -57,7 +56,7 @@ export class MyApp {
   }
 
   onNavigate(page: any, data?: {}) {
-    this.content.setRoot(page), data? data:null);
+    this.content.setRoot(page, data ? data : null);
     this.menuCtrl.close();
   }
 }

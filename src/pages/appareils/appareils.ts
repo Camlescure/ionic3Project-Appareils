@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ModalController, NavController} from 'ionic-angular';
-import { Appareil } from '../../models/Appareil';
+import { Appareil } from '../../models/appareil';
 import { AppareilsService } from '../../services/appareils.service';
 import {SingleAppareilPage} from "../single-appareil/single-appareil";
 import { MenuController } from 'ionic-angular';
